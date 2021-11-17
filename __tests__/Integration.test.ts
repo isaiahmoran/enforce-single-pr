@@ -1,4 +1,5 @@
 import * as github from '@actions/github';
+import {createPullRequestAPI} from '../src/PullRequestsAPI'
 
 // This test is currently intended to be manually run during development. To run:
 // - Make sure you have an environment variable named GITHUB_TOKEN assigned to your token
@@ -7,28 +8,18 @@ describe('Integration Test', () => {
 
     it('Performs action', async () => {
         const git = github.getOctokit(getToken())
-        let response = await git.rest.pulls.list({
-            owner: "whoopinc",
-            repo: "android"
-        })
-        let pullRequests = response.data
+        let api = createPullRequestAPI(git, "whoopinc", "android")
+
+        let pullRequests = await api.listPullRequests()
         let filtered = pullRequests.filter((pr) => pr.user?.login == "WhoopMachineTranslations")
         let toClose = filtered[1]
 
         // noinspection TypeScriptValidateJSTypes
-        await git.rest.issues.createComment({
-            owner: "whoopinc",
-            repo: "android",
-            issue_number: toClose.number,
-            body: "We are all up in your PR"
-        })
+        // api.createComment(toClose.number, "Doing cool stuff")
 
-        await git.rest.pulls.update({
-            owner: "whoopinc",
-            repo: "android",
-            pull_number: toClose.number,
-            state: "closed"
-        })
+        // api.closePullRequest(toClose.number)
+
+        api.deletePullRequestBranch(toClose)
     })
 
     function getToken(): string {
