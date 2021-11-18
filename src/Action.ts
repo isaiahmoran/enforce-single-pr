@@ -22,14 +22,11 @@ export class Action {
 }
 
 export function createAction(): Action {
-  const git = github.getOctokit(getToken())
+  let token = core.getInput("token")
+  const git = github.getOctokit(token)
   let owner = core.getInput("owner")
   let repo = core.getInput("repo")
   let username = core.getInput("username")
   let api = createPullRequestAPI(git, owner, repo)
   return new Action(api, username)
-}
-
-function getToken(): string {
-  return process.env.GITHUB_API_TOKEN ?? ""
 }
