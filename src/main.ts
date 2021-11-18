@@ -1,20 +1,8 @@
-import * as github from '@actions/github'
-import {createPullRequestAPI} from './PullRequestsAPI'
-import {Action} from './Action'
+import {createAction} from './Action'
 
 async function run() {
-  let action = initializeAction()
+  let action = createAction()
   await action.perform()
-}
-
-function getToken(): string {
-  return process.env.GITHUB_API_TOKEN ?? ""
-}
-
-function initializeAction(): Action {
-  const git = github.getOctokit(getToken())
-  let api = createPullRequestAPI(git, "whoopinc", "android")
-  return new Action(api, "fuck")
 }
 
 run()

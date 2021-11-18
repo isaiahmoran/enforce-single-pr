@@ -1,4 +1,5 @@
-import {PullRequestAPI} from './PullRequestsAPI'
+import {createPullRequestAPI, PullRequestAPI} from './PullRequestsAPI'
+import * as github from '@actions/github'
 
 export class Action {
   constructor(private api: PullRequestAPI, private userName: string) {}
@@ -17,4 +18,14 @@ export class Action {
       }
     }
   }
+}
+
+export function createAction(): Action {
+  const git = github.getOctokit(getToken())
+  let api = createPullRequestAPI(git, "whoopinc", "android")
+  return new Action(api, "fuck")
+}
+
+function getToken(): string {
+  return process.env.GITHUB_API_TOKEN ?? ""
 }

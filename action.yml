@@ -1,6 +1,6 @@
-name: 'Isaiah Moran'
+name: 'Enforce Single Pull Request Action'
 description: 'Github action that ensure a designated user only has a single PR open at any given time, giving preference to the newest PR and closing all others.'
-author: 'WHOOP Inc'
+author: 'Isaiah Moran'
 inputs:
   owner:
     required: true
