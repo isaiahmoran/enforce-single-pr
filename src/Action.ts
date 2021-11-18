@@ -10,7 +10,7 @@ export class Action {
     let filtered = pullRequests.filter((pr) => pr.user?.login == this.userName)
 
     if (filtered.length > 1){
-      let newest = filtered[0].head.ref
+      let newest = filtered[0].number
       filtered.splice(0, 1)
       for (let i = 0; i < filtered.length; i++){
         this.api.createComment(filtered[i].number, `Closing PR as it is superceeded by #${newest}`)
