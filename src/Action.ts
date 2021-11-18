@@ -24,8 +24,8 @@ export class Action {
 export function createAction(): Action {
   let token = core.getInput("token")
   const git = github.getOctokit(token)
-  let owner = core.getInput("owner")
-  let repo = core.getInput("repo")
+  let owner = github.context.repo.owner
+  let repo = github.context.repo.repo
   let username = core.getInput("username")
   let api = createPullRequestAPI(git, owner, repo)
   return new Action(api, username)
