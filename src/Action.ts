@@ -18,7 +18,7 @@ export class Action {
           this.api.closePullRequest(filtered[i].number)
           this.api.deletePullRequestBranch(filtered[i])
         } catch (e) {
-          core.warning(`An error occurred performing closing PR # ${filtered[i].number}, moving on to the next PR.`)
+          core.warning(`An error occurred closing PR # ${filtered[i].number}, moving on to the next PR.`)
         }
       }
     }
