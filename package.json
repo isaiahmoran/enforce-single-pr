@@ -9,7 +9,8 @@
     "clean": "rm -rf lib/*",
     "debug": "yarn clean && yarn install && yarn build",
     "release": "yarn clean && yarn install --production && yarn build",
-    "test": "jest"
+    "test": "jest",
+    "package": "ncc build --source-map --license licenses.txt"
   },
   "repository": {
     "type": "git",
