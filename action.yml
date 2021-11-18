@@ -11,6 +11,10 @@ inputs:
   username:
     required: true
     description: 'The username of the account we want to enforce the one PR only policy on.'
+  token:
+    required: false
+    description: 'The github token.'
+    default: ${{ github.token }}
 runs:
   using: 'node12'
   main: 'dist/index.js'
