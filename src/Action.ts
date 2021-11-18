@@ -13,9 +13,13 @@ export class Action {
       let newest = filtered[0].number
       filtered.splice(0, 1)
       for (let i = 0; i < filtered.length; i++){
-        this.api.createComment(filtered[i].number, `Closing PR as it is superceeded by #${newest}`)
-        this.api.closePullRequest(filtered[i].number)
-        this.api.deletePullRequestBranch(filtered[i])
+        try {
+          this.api.createComment(filtered[i].number, `Closing PR as it is superceeded by #${newest}`)
+          this.api.closePullRequest(filtered[i].number)
+          this.api.deletePullRequestBranch(filtered[i])
+        } catch (e) {
+          core.warning(`An error occurred performing closing PR # ${filtered[i].number}, moving on to the next PR.`)
+        }
       }
     }
   }
