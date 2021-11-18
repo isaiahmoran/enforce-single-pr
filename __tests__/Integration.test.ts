@@ -7,19 +7,19 @@ import {createPullRequestAPI} from '../src/PullRequestsAPI'
 describe('Integration Test', () => {
 
     it('Performs action', async () => {
-        const git = github.getOctokit(getToken())
-        let api = createPullRequestAPI(git, "whoopinc", "android")
-
-        let pullRequests = await api.listPullRequests()
-        let filtered = pullRequests.filter((pr) => pr.user?.login == "WhoopMachineTranslations")
-        let toClose = filtered[1]
-
-        // noinspection TypeScriptValidateJSTypes
-        api.createComment(toClose.number, "Doing cool stuff")
-
-        api.closePullRequest(toClose.number)
-
-        api.deletePullRequestBranch(toClose)
+        // const git = github.getOctokit(getToken())
+        // let api = createPullRequestAPI(git, "whoopinc", "android")
+        //
+        // let pullRequests = await api.listPullRequests()
+        // let filtered = pullRequests.filter((pr) => pr.user?.login == "WhoopMachineTranslations")
+        // let toClose = filtered[1]
+        //
+        // // noinspection TypeScriptValidateJSTypes
+        // api.createComment(toClose.number, "Doing cool stuff")
+        //
+        // api.closePullRequest(toClose.number)
+        //
+        // api.deletePullRequestBranch(toClose)
     })
 
     function getToken(): string {
