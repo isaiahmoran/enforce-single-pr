@@ -15,9 +15,9 @@ describe('Integration Test', () => {
         let toClose = filtered[1]
 
         // noinspection TypeScriptValidateJSTypes
-        // api.createComment(toClose.number, "Doing cool stuff")
+        api.createComment(toClose.number, "Doing cool stuff")
 
-        // api.closePullRequest(toClose.number)
+        api.closePullRequest(toClose.number)
 
         api.deletePullRequestBranch(toClose)
     })

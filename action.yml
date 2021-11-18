@@ -1,11 +1,16 @@
-name: 'Isaiah Moran'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'Enforce Single Pull Request Action'
+description: 'Github action that ensure a designated user only has a single PR open at any given time, giving preference to the newest PR and closing all others.'
+author: 'Isaiah Moran'
 inputs:
-  milliseconds: # change this
+  owner:
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+    description: 'The owner of the repo the action is being performed against.'
+  repo:
+    required: true
+    description: 'The repo the action is being performed against.'
+  username:
+    required: true
+    description: 'The username of the account we want to enforce the one PR only policy on.'
 runs:
   using: 'node12'
   main: 'dist/index.js'
