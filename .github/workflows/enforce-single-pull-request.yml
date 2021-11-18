@@ -1,5 +1,5 @@
-name: "Test"
-on: [push, pull_request]
+name: "Enforce Single Pull Request"
+on: [pull_request]
 
 jobs:
   check_pr:
