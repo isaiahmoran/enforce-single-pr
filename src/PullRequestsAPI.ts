@@ -67,6 +67,14 @@ class GithubPullRequestAPI implements PullRequestAPI {
       ref: `heads/${pullRequest.head.ref}`
     })
   }
+
+  async mergePullRequest(pullRequest: PullRequest, issue_number: number) {
+    await this.git.rest.git.deleteRef({
+      owner: this.owner,
+      repo: this.repo,
+      ref: `heads/${pullRequest.head.ref}`
+    })
+  }
 }
 
 export function createPullRequestAPI(git: InstanceType<typeof GitHub>,
