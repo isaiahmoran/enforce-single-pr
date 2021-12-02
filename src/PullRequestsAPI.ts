@@ -69,10 +69,10 @@ class GithubPullRequestAPI implements PullRequestAPI {
   }
 
   async mergePullRequest(pullRequest: PullRequest, issue_number: number) {
-    await this.git.rest.git.deleteRef({
+    await this.git.rest.pulls.merge({
       owner: this.owner,
       repo: this.repo,
-      ref: `heads/${pullRequest.head.ref}`
+      pull_number: issue_number
     })
   }
 }
